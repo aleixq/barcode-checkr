@@ -1,3 +1,8 @@
+/**
+ * @file Creates the data and the workflow to check a barcode in a list of ticket barcode from a CSV file. 
+ * @author Aleix Quintana Alsius 
+ */
+
 DEBUG=true;
 $(document).ready(function() {
 		/*equilibra alcada de navbar amb capcalera de la taula*/
@@ -127,7 +132,7 @@ function repaintTable(){
 	paint_csv(csv);
 }
 
-/*
+/**
  * Renders the CSV data in table format
  */
 function paint_csv(csv){
@@ -151,7 +156,7 @@ function paint_csv(csv){
 	updateStats();
 }
 
-/*
+/**
  * Marks a specific ticket as used
  * @param {number} ticket - the ticket id.
  * @returns {object|boolean} the concrete ticket or false if not found
@@ -171,7 +176,7 @@ function checkAsUsed(ticket){
 	}    
 }
 
-/*
+/**
  * Store the revision to browser localstorage.
  */
 function saveData(){
@@ -185,7 +190,7 @@ function saveData(){
 	}
 }
 
-/*
+/**
  * Look for the barcode in tickets array.
  * @param {string} barcode - the barcode 
  * @returns {string | boolean} The barcode found or false if not found.
@@ -204,7 +209,7 @@ function getTicketBarcode(barcode){
 	return false;
 }
 
-/*
+/**
  * Get the barcode field id (x).
  * @param {Array} head - each header field from csv 
  * @returns {int | boolean } The numeric field id (x) or false if not found.
@@ -219,7 +224,7 @@ function getBarcodeFieldId(head){
 	return false;
 }
 
-/*
+/**
  * Add visual information for each input
  * @param {string} frase - the phrase that will show in the main "display"
  * @param {string} ticket_row - the ticket row coming from the contents table.
@@ -232,7 +237,7 @@ function prompt(frase,ticket_row){
 	$( window ).trigger('resize');
 }
 
-/*
+/**
  * Answer to tr class fulfill if starts with check
  * @param {string} used - the contents of used field
  * @returns {string} premarked or empty 
@@ -245,7 +250,7 @@ function premarked(used){
 	}    
 }
 
-/*
+/**
  * Recovers the data from localstorage
  */
 function recover(){
@@ -254,7 +259,7 @@ function recover(){
 	repaintTable()
 }
 
-/*
+/**
  * Exports the contents of the table to downloadable csv file
  */
 function exportCSV(){
@@ -270,7 +275,7 @@ function exportCSV(){
 }
 
 
-/*
+/**
  * Helper function to show console.log only if DEBUG is TRUE.
  */
 function debug(mot){
@@ -279,7 +284,7 @@ function debug(mot){
 	}
 }
 
-/*
+/**
  * Flips array keys with array values.
  * @param {Array} array_to_flip - the array to be flipped
  * @returns {Array} The flipped array
@@ -292,7 +297,7 @@ function arrayflip(array_to_flip){
 	return array_flipped;
 }
 
-/*
+/**
  * Checks if browser localstorage is available.
  * @param {string} type - the type of storage. e.g. "localStorage"
  * @returns {boolean} true if available, false if not
@@ -310,7 +315,7 @@ function storageAvailable(type) {
 	}
 }
 
-/*
+/**
  * Update the stats of the used and total tickets.
  */
 function updateStats(){

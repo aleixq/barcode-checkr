@@ -2,5 +2,6 @@ node_modules
 libs/*
 build
 dist
+doc
 .tmp
 bower_components

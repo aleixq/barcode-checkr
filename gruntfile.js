@@ -69,7 +69,15 @@ usemin: {
                              }
                              ]
                          }
-                     }
+                     },
+		    jsdoc : {
+			dist : {
+			    src: ['assets/*.js'],
+			    options: {
+				destination: 'doc'
+			    }
+			}
+		    }
                      
     });
     // 2. Where we tell Grunt we plan to use this plug-in.
@@ -82,8 +90,10 @@ usemin: {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-combo-html-css-js');
     grunt.loadNpmTasks('grunt-htmlmin');
+    grunt.loadNpmTasks('grunt-jsdoc');
     
     // 3. Where we tell Grunt what to do when we type “grunt” into the terminal.
+    grunt.registerTask('doc',['jsdoc']);
     grunt.registerTask('dev',['clean','wiredep']);
     grunt.registerTask('min-assets',['clean','wiredep','copy:html','useminPrepare','concat','uglify','cssmin','usemin']);
     grunt.registerTask('single',['min-assets','comboall','htmlmin']);
