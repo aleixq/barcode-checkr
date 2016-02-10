@@ -1,0 +1,16 @@
+{
+  "name": "barcode-checkr",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-combo-html-css-js": "^0.1.0",
+    "grunt-contrib-clean": "^0.7.0",
+    "grunt-contrib-concat": "^0.5.1",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-uglify": "^0.11.1",
+    "grunt-copy": "^0.1.0",
+    "grunt-htmlmin": "^0.1.4",
+    "grunt-usemin": "^3.1.1",
+    "grunt-wiredep": "^2.0.0"
+  }
+}

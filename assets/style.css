@@ -1,0 +1,30 @@
+#inputs{
+float: left;
+width: 30%;
+}
+
+/*#content_wrapper{
+ * height: 100px !important;
+ * overflow: scroll;
+ * }*/
+
+#ticketActual{
+font-size:10px;
+}
+#taulaRecents{
+float: right;
+width: 70%;
+text-align:center;
+}
+.premarked{
+background-color:#5CB85C;
+}
+.table-striped>tbody>tr.premarked:nth-of-type(odd){
+background-color:#53A753;
+}
+#prompter h1 span{
+display:block;
+}
+.barcodeArea, #stats{
+display:inline-block;
+}

@@ -1,0 +1,104 @@
+<html><head>
+<meta charset="utf-8">
+<title>Barcode Checkr</title>
+
+<!-- build:js assets/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jquery-csv/src/jquery.csv.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/jasny-bootstrap/dist/js/jasny-bootstrap.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:js assets/barcode-checkr.js -->
+<script src="assets/barcode-checkr.js"></script>
+<!-- endbuild -->
+
+<!-- build:css assets/vendor.css -->
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="bower_components/jasny-bootstrap/dist/css/jasny-bootstrap.css" />
+<!-- endbower -->
+<!-- endbuild -->
+<!-- build:css assets/style.css -->
+<link rel="stylesheet" href="assets/style.css" />
+<!-- endbuild -->
+
+
+<body>
+
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="row" style="padding-top:10px;">
+      <div class="col-md-4">
+       <div class="form-group barcodeArea">
+            <label for="barcode">Id de ticket:</label><input type="text" name="codiBarra" id="barcode"><br/>
+        </div>
+        <div id="stats"></div>
+
+      </div>
+      <div class="col-md-4 col-md-offset-2">
+        <!-- Start of fileInput snippet-->
+	<div class="fileinput fileinput-new input-group" data-provides="fileinput">
+	  <div class="form-control" data-trigger="fileinput">
+            <i class="glyphicon glyphicon-file fileinput-exists"></i> 
+            <span class="fileinput-filename"></span>
+          </div>
+	  <span class="input-group-addon btn btn-default btn-file">
+            <span class="fileinput-new">Select file</span>
+            <span class="fileinput-exists">Change</span>
+              <input id="files" name="files[]" multiple="" type="file">    
+	  </span>
+	  <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
+	</div>
+        <!-- end of fileinput snippet !-->
+      </div>
+      <div class="col-md-2">
+            <button type="button" id="recover" class="btn btn-warning">Recover</button>
+            <button type="button" id="export" class="btn btn-info">Exportar</button><br/>  
+      </div>
+    </div>
+    <div class="row">    
+      <div class="col-md-3">
+        <div class="form-group">
+            <div id="inputs" class="clearfix form-inline">
+            </div>
+        </div>
+        <div class="form-group">
+
+        </div>
+        <div class="form-group">
+
+        </div>
+
+      </div>
+      <div class="col-md-7">
+      </div>
+      <div class="col-md-2">
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+                   
+            <div class="taulaRecents">
+                <div id="prompter"></div>
+                <table id="ticketActual" class="table" >
+                <tr style="font-size:20px;" >
+                </tr>
+                </table>
+            </div>                    
+        </div>
+    </div>
+    <output id="list"></output>
+  </div>
+</div>
+
+<div id="content_wrapper">
+  <table id="contents" class="table table-striped">
+  </table>
+</div>
+
+
+
+
+</body></html>

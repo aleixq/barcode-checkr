@@ -1,0 +1,35 @@
+{
+  "name": "barcode-checkr",
+  "version": "0.1.0",
+  "homepage": "https://github.com/aleixq/barcode-checkr",
+  "authors": [
+    "Aleix Quintana Alsius (kinta) <kinta@communia.org>"
+  ],
+  "description": "UI to check the barcode from csv",
+  "main": "barcode-checkr.html",
+  "keywords": [
+    "barcode"
+  ],
+  "license": "GPLv3",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "jquery-csv": "*",
+    "bootstrap": "~3.3.6",
+    "jasny-bootstrap": "~3.1.3"
+  },
+  "overrides":{
+	  "bootstrap":{
+		  "main":[
+			  "dist/js/bootstrap.js",
+		  "dist/css/bootstrap.min.css",
+		  "less/bootstrap.less"
+		  ]
+	  }}
+}
