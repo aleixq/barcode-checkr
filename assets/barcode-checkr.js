@@ -1,40 +1,41 @@
 DEBUG=true;
 $(document).ready(function() {
-		//CAPTURA KEYBOARD. Nomes va amb firefox, els altres dona undefined.
-		//                 $("body").keypress(function(e){
-		//                         key=e.originalEvent.key;
-		//                         $('#barcode').val($('#barcode').val() + key);
-		//                     });
 		/*equilibra alcada de navbar amb capcalera de la taula*/
-                $(window).resize(function () {
-                    // resize header here
-                    $("#content_wrapper").css(
-                        "padding-top" , $(".navbar").height()
-                    );
-                });
-                $("#content_wrapper").css(
-                    "padding-top" , $(".navbar").height()
-                );                
+		$(window).resize(function () {
+				// resize header here
+				$("#content_wrapper").css(
+						"padding-top" , $(".navbar").height()
+						);
+				});
+		$("#content_wrapper").css(
+				"padding-top" , $(".navbar").height()
+				);                
 
-    /* Obté focus*/
+		/* Obté focus*/
 		$('#barcode').focus();
 		$('#barcode').blur(function() { this.focus();$(this).select(); });
 		if(isAPIAvailable()) {
-		$('#files').bind('change', handleFileSelect);
-		$('#barcode').bind('change', checkCode);
-
-		$('#recover').click(recover);
-		$('#export').click(exportCSV);
-		defineFields();
+		  $('#files').bind('change', handleFileSelect);
+		  $('#barcode').bind('change', checkCode);
+		  $('#recover').click(recover);
+		  $('#export').click(exportCSV);
+		  defineFields();
 		}
-		});
+});
+
+/**
+ * Define the header fields in CSV that are gonna be used. It is mandatory that they exist in CSV.
+ */
 function defineFields(){
-	/*Aquests camps han de sortir si o si al csv*/
 	barcode_field = "Barcode";
 	used_field = "Used";
 	tickId_field = "Ticket ID";
-	//     barcodeFieldId=8    
 }
+
+/**
+ * Check if browser supports file API.
+ * @returns {boolean} If it is supported.
+ */
 function isAPIAvailable() {
 	// Check for the various File API support.
 	if (window.File && window.FileReader && window.FileList && window.Blob) {
@@ -58,6 +59,10 @@ function isAPIAvailable() {
 	}
 }
 
+/**
+ * Check if the code from input field form is valid.
+ * @param {Anything} evt - the object containing data that will be passed to the event handler.
+ */
 function checkCode(evt){
 	if (evt != undefined){
 		code = evt.target.value;
@@ -75,9 +80,13 @@ function checkCode(evt){
 	}else{
 		prompt("<h1><span class='label label-danger'>ticket #"+code+" no valid</span></h2>","");
 	};
-	return;
 }
 
+
+/**
+ * Handles the file coming from file input.
+ * @param {Anything} evt - the object containing data that will be passed to the event handler.
+ */
 function handleFileSelect(evt) {
 	var files = evt.target.files; // FileList object
 	var file = files[0];
@@ -92,11 +101,12 @@ function handleFileSelect(evt) {
 
 	// read the file contents
 	printTable(file);
-
-	// post the results
-	//$('#list').html(output);
 }
 
+/**
+ * Prints the table when data comes from CSV file.
+ * @param {File} file - the file loaded from file input field.
+ */
 function printTable(file) {
 	debug("printingtable");
 	var reader = new FileReader();
@@ -108,11 +118,18 @@ function printTable(file) {
 	reader.onerror = function(){ alert('Unable to read ' + file.fileName); };
 }
 
+/**
+ * Repaints the table, usually whenever a ticket is gonna be marked, or when data 
+ * is recovered from storage.
+ */
 function repaintTable(){
 	csv= $.csv.fromObjects(tickets);
 	paint_csv(csv);
 }
 
+/*
+ * Renders the CSV data in table format
+ */
 function paint_csv(csv){
 	var data = $.csv.toArrays(csv);
 	tickets= $.csv.toObjects(csv);
@@ -134,13 +151,13 @@ function paint_csv(csv){
 	updateStats();
 }
 
+/*
+ * Marks a specific ticket as used
+ * @param {number} ticket - the ticket id.
+ * @returns {object|boolean} the concrete ticket or false if not found
+ */
 
-function csvChanged(change) {
-	console.log('object property '+change.data.propertyName+' changed!');
-	console.log(change);
-}
-
-function checkAsUsed(ticket){  
+function checkAsUsed(ticket){
 	debug("Checking ticket with barcode "+tickets[ticket][barcode_field]+" as used");
 	var now = new Date().toISOString().slice(0, 19);
 	if (tickets[ticket][used_field].slice(0,1)=="✖"){
@@ -154,10 +171,13 @@ function checkAsUsed(ticket){
 	}    
 }
 
+/*
+ * Store the revision to browser localstorage.
+ */
 function saveData(){
 	if (storageAvailable('localStorage')) {
 		// Yippee! We can use localStorage awesomeness
-		localStorage.setItem('jazzterrassa-tickets.csv',$.csv.fromObjects(tickets));
+		localStorage.setItem('barcode-checkr.csv',$.csv.fromObjects(tickets));
 	}
 	else {
 		// Too bad, no localStorage for us
@@ -165,6 +185,11 @@ function saveData(){
 	}
 }
 
+/*
+ * Look for the barcode in tickets array.
+ * @param {string} barcode - the barcode 
+ * @returns {string | boolean} The barcode found or false if not found.
+ */
 function getTicketBarcode(barcode){
 
 	for(x in tickets){
@@ -179,6 +204,11 @@ function getTicketBarcode(barcode){
 	return false;
 }
 
+/*
+ * Get the barcode field id (x).
+ * @param {Array} head - each header field from csv 
+ * @returns {int | boolean } The numeric field id (x) or false if not found.
+ */
 function getBarcodeFieldId(head){
 	for (var item in head){
 		if (head[item] == barcode_field ){
@@ -189,6 +219,11 @@ function getBarcodeFieldId(head){
 	return false;
 }
 
+/*
+ * Add visual information for each input
+ * @param {string} frase - the phrase that will show in the main "display"
+ * @param {string} ticket_row - the ticket row coming from the contents table.
+ */
 function prompt(frase,ticket_row){
         $("#prompter").html(frase);
 	$("#ticketActual").html(ticket_row);
@@ -197,6 +232,11 @@ function prompt(frase,ticket_row){
 	$( window ).trigger('resize');
 }
 
+/*
+ * Answer to tr class fulfill if starts with check
+ * @param {string} used - the contents of used field
+ * @returns {string} premarked or empty 
+ */
 function premarked(used){
 	if (used.slice(0,1)=="✔"){
 		return "premarked";
@@ -205,31 +245,45 @@ function premarked(used){
 	}    
 }
 
+/*
+ * Recovers the data from localstorage
+ */
 function recover(){
 	debug("Recovering data from localStorage");
-	tickets = $.csv.toObjects(localStorage.getItem("jazzterrassa-tickets.csv"));
+	tickets = $.csv.toObjects(localStorage.getItem("barcode-checkr.csv"));
 	repaintTable()
 }
 
+/*
+ * Exports the contents of the table to downloadable csv file
+ */
 function exportCSV(){
 	var pom = document.createElement('a');
 	var csvContent= $.csv.fromObjects(tickets); //here we load our csv data 
 	var blob = new Blob([csvContent],{type: 'text/csv;charset=utf-8;'});
 	var url = URL.createObjectURL(blob);
 	pom.href = url;
-	pom.setAttribute('download', 'jazzterrassa-tickets.csv');
+	pom.setAttribute('download', 'barcode-checkr.csv');
 	document.body.appendChild(pom);
 	pom.click();    
 	document.body.removeChild(pom);
 }
 
 
-
+/*
+ * Helper function to show console.log only if DEBUG is TRUE.
+ */
 function debug(mot){
 	if (DEBUG){
 		console.log(mot);
 	}
 }
+
+/*
+ * Flips array keys with array values.
+ * @param {Array} array_to_flip - the array to be flipped
+ * @returns {Array} The flipped array
+ */
 function arrayflip(array_to_flip){
 	var array_flipped={};
 	$.each(array_to_flip, function(i, el) {
@@ -238,6 +292,11 @@ function arrayflip(array_to_flip){
 	return array_flipped;
 }
 
+/*
+ * Checks if browser localstorage is available.
+ * @param {string} type - the type of storage. e.g. "localStorage"
+ * @returns {boolean} true if available, false if not
+ */
 function storageAvailable(type) {
 	try {
 		var storage = window[type],
@@ -251,6 +310,9 @@ function storageAvailable(type) {
 	}
 }
 
+/*
+ * Update the stats of the used and total tickets.
+ */
 function updateStats(){
 	var n = $( ".premarked" ).length;
         var t = $("#contents tr").length;
