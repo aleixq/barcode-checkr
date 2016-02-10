@@ -24,3 +24,4 @@ Grunt tasks:
 
 Other tasks:
 * `grunt dev` : will clean both build and dist directories.
+* `grunt doc` : will create the docs, basically the barcode-checkr.js documentation. The output directory is `doc`.
