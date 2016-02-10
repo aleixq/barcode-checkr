@@ -4,7 +4,7 @@ UI to check the barcode from csv
 
 I just want to run it
 =======
-Download release
+Download latest release from https://github.com/aleixq/barcode-checkr/releases/latest , and open in modern browser.
 
 develop
 =======
