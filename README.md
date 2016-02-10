@@ -2,9 +2,9 @@
 UI to check the barcode from csv
 
 
-Install
+I just want to run it
 =======
-download release
+Download release
 
 develop
 =======
