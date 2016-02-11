@@ -12,7 +12,7 @@ Barcode Checkr is a webapp (html + js) to validate via barcode scanner against a
 
 * Open the file barcode-checkr.html with a modern and safe browser (e.g.Chromium or firefox).
 * Connect the usb barcode scanner, and check that it scans codes and that it gets echoed in the "Id de ticket" box.
-* CSV: Load the csv file through the inidicated box.
+* CSV: Load the csv file through the inidicated box. By default CSV file must contain at least the header fields "Barcode","Used", and "Ticket ID".
 * Export and recover: In case that browser or tab is closed we can recover last ticket/product list. In case that you want to change computer or you want to restart the browser the safest way will be to export csv file and reload again once you start browser again.
 
 ---------------------
@@ -26,6 +26,7 @@ Quick run
 =======
 Download latest release from https://github.com/aleixq/barcode-checkr/releases/latest , and open in modern browser. 
 Additionally, you can select the example.csv found at  directory example/ to view the workflow: https://github.com/aleixq/barcode-checkr/raw/master/example/example.csv . 
+(As shown in example CSV file must contain at least the header fields "Barcode","Used", and "Ticket ID".)
 
 
 develop
