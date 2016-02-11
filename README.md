@@ -19,7 +19,7 @@ Barcode Checkr is a webapp (html + js) to validate via barcode scanner against a
 (català)
 * Obrir l'arxiu barcode-checkr.html: amb un navegador actualitzat i modern (Chromium or firefox).
 * Connectar lector: Connectar el lector de codi de barres per usb i assegurar-se que llegeix codis i n'imprimeix el resultat a la caixa "Id de ticket".
-* Entrades en .csv: Cal carregar el llistat d'entrades mitjançant el botó de navegació d'arxius sota el títol "Select file Change" i seleccionar l'arxiu ".csv" descarregat.
+* Entrades en .csv: Cal carregar el llistat d'entrades mitjançant el botó de navegació d'arxius sota el títol "Select file Change" i seleccionar l'arxiu ".csv" descarregat. Per defecte el fitxer CSV haurà de contenit com a mínim els camps de capçalera "Barcode","Used", i "Ticket ID".
 * Exportar i recuperar: En cas de tancament accidental de la pestanya del navegador podem provar d'utilitzar el botó "recover". En cas que vulguem recarregar el navegador o reiniciar l'ordinador per continuar després en el mateix estat que teníem el llistat, recomanem utilitzar l'opció "exportar" i  recarregar posteriorment l'arxiu generat amb "Select file Change".
 
 Quick run
