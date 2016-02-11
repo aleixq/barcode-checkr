@@ -1,8 +1,22 @@
 # barcode-checkr
-UI to check the barcode from csv.
-Barcode Checkr és un programa en html i javascript per verificar mitjançant un lector de codis de barres un llistat de entrades. S'utilitza mitjançant un navegador web.
+UI to check the barcode from csv. Developed to fulfill the needs of a Drupal commerce site with a drupal commerce event ticket ( https://www.drupal.org/project/commerce_event_ticket), but it can be used with any csv list of products with a barcode.
 
-# Utilitzar Barcode-checkr
+Barcode Checkr is a webapp (html + js) to validate via barcode scanner against a list of tickets/products. It will run with a web browser.
+
+------------
+
+(català) Barcode Checkr és un programa en html i javascript per verificar mitjançant un lector de codis de barres un llistat de entrades. S'utilitza mitjançant un navegador web.
+
+
+#Using Barcode-checkr
+
+* Open the file barcode-checkr.html with a modern and safe browser (e.g.Chromium or firefox).
+* Connect the usb barcode scanner, and check that it scans codes and that it gets echoed in the "Id de ticket" box.
+* CSV: Load the csv file through the inidicated box.
+* Export and recover: In case that browser or tab is closed we can recover last ticket/product list. In case that you want to change computer or you want to restart the browser the safest way will be to export csv file and reload again once you start browser again.
+
+---------------------
+(català)
 * Obrir l'arxiu barcode-checkr.html: amb un navegador actualitzat i modern (Chromium or firefox).
 * Connectar lector: Connectar el lector de codi de barres per usb i assegurar-se que llegeix codis i n'imprimeix el resultat a la caixa "Id de ticket".
 * Entrades en .csv: Cal carregar el llistat d'entrades mitjançant el botó de navegació d'arxius sota el títol "Select file Change" i seleccionar l'arxiu ".csv" descarregat.
