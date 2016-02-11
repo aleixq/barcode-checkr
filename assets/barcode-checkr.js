@@ -18,10 +18,19 @@ $(document).ready(function() {
 
 		/* Obté focus*/
 		$('#barcode').focus();
-		$('#barcode').blur(function() { this.focus();$(this).select(); });
+		$('#barcode').blur(function() { 
+                     this.focus();
+                     $(this).select(); 
+                });
+                $('body').keypress(function(e){
+                     if ( e.keyCode == 13 ) {
+                       $('#barcode').trigger('newCode')
+                       $('#barcode').select();
+                     }
+                });
 		if(isAPIAvailable()) {
 		  $('#files').bind('change', handleFileSelect);
-		  $('#barcode').bind('change', checkCode);
+		  $('#barcode').bind('newCode', checkCode);
 		  $('#recover').click(recover);
 		  $('#export').click(exportCSV);
 		  defineFields();
