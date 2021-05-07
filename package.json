@@ -2,7 +2,7 @@
   "name": "barcode-checkr",
   "version": "0.1.0",
   "devDependencies": {
-    "grunt": "~0.4.1",
+    "grunt": ">=1.3.0",
     "grunt-combo-html-css-js": "^0.1.0",
     "grunt-contrib-clean": "^0.7.0",
     "grunt-contrib-concat": "^0.5.1",
